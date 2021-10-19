@@ -1,0 +1,11 @@
+framework module MluviiChat {
+  umbrella header "MluviiChat.h"
+
+  export *
+  module * { export * }
+}
+
+module MluviiChat.Swift {
+    header "MluviiChat-Swift.h"
+    requires objc
+}
