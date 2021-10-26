@@ -2,8 +2,7 @@
 //  MluviiChat.h
 //  MluviiChat
 //
-//  Created by Maulik Bhuptani on 14/10/21.
-//  Copyright © 2021 Mluvii. All rights reserved.
+//  Created by Maulik Bhuptani on 24/10/21.
 //
 
 #import <Foundation/Foundation.h>
