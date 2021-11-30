@@ -49,6 +49,9 @@ struct MluviiChatView: UIViewRepresentable {
             isOpenChatClicked = false
             chat.resetUrl()
         }
+        chat.addCustomData(name: "call_param_1", value: "tst22")
+        chat.openChat()
+        
         return chatView
     }
 

@@ -27,10 +27,10 @@ public class MluviiChat: NSObject, WKUIDelegate, WKNavigationDelegate, WKScriptM
     
     @objc private func rotated() {
         if UIDevice.current.orientation.isLandscape {
-//            print("Landscape")
+            print("Landscape")
         }
         if UIDevice.current.orientation.isPortrait {
-//            print("Portrait")
+            print("Portrait")
         }
     }
     
@@ -72,10 +72,8 @@ public class MluviiChat: NSObject, WKUIDelegate, WKNavigationDelegate, WKScriptM
             optionalScope = "&s=\(scope!)"
         }
         let optionalQuery = "\(optionalPresetName)\(optionalLanguage)\(optionalScope)"
-//        print("optionalQuery \(optionalQuery)")
         link = "\(link)\(optionalQuery)"
         let encodedLink = link.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-//        print("link: \(encodedLink!)")
         completeLink = encodedLink!
         return encodedLink!
     }
@@ -97,9 +95,6 @@ public class MluviiChat: NSObject, WKUIDelegate, WKNavigationDelegate, WKScriptM
             let url = URL(string: completeLink)!
             webView?.load(URLRequest(url:url))
             webView?.allowsBackForwardNavigationGestures = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.openChat()
-            }
         }
         return webView ?? WKWebView()
     }
@@ -108,11 +103,9 @@ public class MluviiChat: NSObject, WKUIDelegate, WKNavigationDelegate, WKScriptM
         let jsonObject = message.body as! [String:AnyObject]
         if(jsonObject["type"] as! String == "status"){
             let widgetState = jsonObject["value"] as! Int32
-//            print("Widget State: ", widgetState)
             statusFunc!(widgetState)
         }
         if(jsonObject["type"] as! String == "close"){
-//            print("Calling ended function")
             endedFunc!()
         }
     }
@@ -123,8 +116,6 @@ public class MluviiChat: NSObject, WKUIDelegate, WKNavigationDelegate, WKScriptM
     
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!){
         print("Started Loading Webview")
-//        print("Start to load: "+navigation.debugDescription)
-//        print("Start to load: " + (webView.url?.absoluteString ?? "Empty URL"))
     }
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!){
