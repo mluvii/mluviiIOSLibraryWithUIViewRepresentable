@@ -33,6 +33,7 @@ struct MluviiChatView: UIViewRepresentable {
     typealias Context = UIViewRepresentableContext<Self>
     typealias UIViewType = WKWebView
     
+    public var chat = MluviiChat()
     @Binding private var isOpenChatClicked: Bool
     @Binding private var buttonColor: Color
 
@@ -42,15 +43,20 @@ struct MluviiChatView: UIViewRepresentable {
      }
 
     public func makeUIView(context: Context) -> UIViewType {
-        let chat = MluviiChat()
         chat.setStatusUpdater(statusF: statusUpdate)
-        let chatView = chat.createUIView(url: "ptr.mluvii.com", companyGuid: "295b1064-cf5b-4a5d-9e05-e7a74f86ae5e", tenantId: "1", presetName: nil, language: nil, scope: nil)
+        let chatView = chat.createUIView(
+            url: "apptest.mluvii.com",
+            companyGuid: "295b1064-cf5b-4a5d-9e05-e7a74f86ae5e",
+            tenantId: "1",
+            presetName: nil,
+            language: nil,
+            scope: nil,
+            navigationActionCustomDelegate: self.navigationActionDelegate
+        )
         chat.setChatEnded {
             isOpenChatClicked = false
             chat.resetUrl()
         }
-        chat.addCustomData(name: "call_param_1", value: "tst22")
-        chat.openChat()
         
         return chatView
     }
@@ -63,8 +69,21 @@ struct MluviiChatView: UIViewRepresentable {
         }
     }
     
+    public func navigationActionDelegate(webView: WKWebView, navigationAction: WKNavigationAction) -> WKWebView? {
+        if navigationAction.targetFrame == nil, let url = navigationAction.request.url {
+          if url.description.lowercased().range(of: "http://") != nil ||
+            url.description.lowercased().range(of: "https://") != nil ||
+            url.description.lowercased().range(of: "mailto:") != nil {
+            UIApplication.shared.openURL(url)
+          }
+        }
+      return nil
+    }
+    
     private func statusUpdate(status: Int32) -> Void{
         print("Update status \(status)")
+        chat.addCustomData(name: "Puvod", value: "mobil-test")
+        chat.openChat()
         let widgetState = status
         if(widgetState == 0){
             buttonColor = .gray
