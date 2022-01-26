@@ -141,6 +141,14 @@ public class MluviiChat: NSObject, WKUIDelegate, WKNavigationDelegate, WKScriptM
             return navigationActionDelegate!(webView, navigationAction)
         }
         
+        if navigationAction.targetFrame == nil, let url = navigationAction.request.url {
+            if url.description.lowercased().range(of: "http://") != nil ||
+                url.description.lowercased().range(of: "https://") != nil ||
+                url.description.lowercased().range(of: "mailto:") != nil {
+                UIApplication.shared.openURL(url)
+            }
+        }
+        
         return nil
     }
 
