@@ -10,10 +10,13 @@ import UIKit
 import WebKit
 
 public class MluviiChat: NSObject, WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler {
+    public typealias NavigationActionDelegate = (WKWebView, WKNavigationAction)->WKWebView?
     
     private var webView:WKWebView? = nil
     
     private var completeLink: String = ""
+    
+    private var navigationActionDelegate: NavigationActionDelegate? = nil
     
     typealias ChatEnded = () -> Void
     
@@ -74,12 +77,21 @@ public class MluviiChat: NSObject, WKUIDelegate, WKNavigationDelegate, WKScriptM
         let optionalQuery = "\(optionalPresetName)\(optionalLanguage)\(optionalScope)"
         link = "\(link)\(optionalQuery)"
         let encodedLink = link.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        completeLink = encodedLink!
+        print("link: \(encodedLink!)")
         return encodedLink!
     }
     
-    public func createUIView(url:String, companyGuid:String, tenantId:String, presetName:String?, language:String?, scope:String?) -> WKWebView {
+    public func createUIView(
+        url:String,
+        companyGuid:String,
+        tenantId:String,
+        presetName:String?,
+        language:String?,
+        scope:String?,
+        navigationActionCustomDelegate: NavigationActionDelegate?
+    ) -> WKWebView {
         if(webView == nil){
+            navigationActionDelegate = navigationActionCustomDelegate
             let config = WKWebViewConfiguration()
             let pref = WKPreferences()
             pref.javaScriptEnabled = true
@@ -124,6 +136,22 @@ public class MluviiChat: NSObject, WKUIDelegate, WKNavigationDelegate, WKScriptM
         webView.evaluateJavaScript(script, completionHandler: nil)
     }
     
+    public func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        if (navigationActionDelegate != nil) {
+            return navigationActionDelegate!(webView, navigationAction)
+        }
+        
+        if navigationAction.targetFrame == nil, let url = navigationAction.request.url {
+            if url.description.lowercased().range(of: "http://") != nil ||
+                url.description.lowercased().range(of: "https://") != nil ||
+                url.description.lowercased().range(of: "mailto:") != nil {
+                UIApplication.shared.openURL(url)
+            }
+        }
+        
+        return nil
+    }
+
     public func addCustomData(name:String, value:String) {
         let script = "$owidget.addCustomData('\(name)', '\(value)')"
         webView?.evaluateJavaScript(script, completionHandler: nil)
