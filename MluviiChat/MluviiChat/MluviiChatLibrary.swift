@@ -9,8 +9,9 @@
 import UIKit
 import WebKit
 
+public typealias NavigationActionDelegate = (WKWebView, WKNavigationAction)->WKWebView?
+
 public class MluviiChat: NSObject, WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler {
-    public typealias NavigationActionDelegate = (WKWebView, WKNavigationAction)->WKWebView?
     
     private var webView:WKWebView? = nil
     
