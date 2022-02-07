@@ -7,7 +7,7 @@ import UIKit
 import WebKit
 import _Concurrency
 public typealias NavigationActionDelegate = (WebKit.WKWebView, WebKit.WKNavigationAction) -> WebKit.WKWebView?
-@objc @_inheritsConvenienceInitializers public class MluviiChat : ObjectiveC.NSObject, WebKit.WKUIDelegate, WebKit.WKNavigationDelegate, WebKit.WKScriptMessageHandler {
+@objc @_inheritsConvenienceInitializers public class MluviiChatLibrary : ObjectiveC.NSObject, WebKit.WKUIDelegate, WebKit.WKNavigationDelegate, WebKit.WKScriptMessageHandler {
   @objc override dynamic public init()
   public func setChatEnded(ended: @escaping () -> Swift.Void)
   public func setStatusUpdater(statusF: @escaping (_ status: Swift.Int32) -> Swift.Void)

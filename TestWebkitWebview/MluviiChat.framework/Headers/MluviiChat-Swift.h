@@ -215,8 +215,8 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @class WKNavigationAction;
 @class WKWindowFeatures;
 
-SWIFT_CLASS("_TtC10MluviiChat10MluviiChat")
-@interface MluviiChat : NSObject <WKNavigationDelegate, WKScriptMessageHandler, WKUIDelegate>
+SWIFT_CLASS("_TtC10MluviiChat17MluviiChatLibrary")
+@interface MluviiChatLibrary : NSObject <WKNavigationDelegate, WKScriptMessageHandler, WKUIDelegate>
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (void)userContentController:(WKUserContentController * _Nonnull)userContentController didReceiveScriptMessage:(WKScriptMessage * _Nonnull)message;
 - (void)webView:(WKWebView * _Nonnull)webView didFailNavigation:(WKNavigation * _Null_unspecified)navigation withError:(NSError * _Nonnull)error;

@@ -15,8 +15,8 @@
 		4C23E290272588210067150B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C23E28E272588210067150B /* LaunchScreen.storyboard */; };
 		4C23E29B272588220067150B /* TestWebkitWebviewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C23E29A272588220067150B /* TestWebkitWebviewTests.swift */; };
 		4C23E2A6272588220067150B /* TestWebkitWebviewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C23E2A5272588220067150B /* TestWebkitWebviewUITests.swift */; };
-		F8E9FE5327ABCD3100F95A0A /* MluviiChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E9FE5227ABCD3100F95A0A /* MluviiChat.framework */; platformFilter = ios; };
-		F8E9FE5427ABCD3100F95A0A /* MluviiChat.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F8E9FE5227ABCD3100F95A0A /* MluviiChat.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F8CECBC127B10F08007EAF17 /* MluviiChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8CECBC027B10F07007EAF17 /* MluviiChat.framework */; platformFilter = ios; };
+		F8CECBC227B10F08007EAF17 /* MluviiChat.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F8CECBC027B10F07007EAF17 /* MluviiChat.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,13 +37,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F8E9FE5527ABCD3100F95A0A /* Embed Frameworks */ = {
+		F8CECBC327B10F08007EAF17 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F8E9FE5427ABCD3100F95A0A /* MluviiChat.framework in Embed Frameworks */,
+				F8CECBC227B10F08007EAF17 /* MluviiChat.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,7 +65,7 @@
 		4C23E2A1272588220067150B /* TestWebkitWebviewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestWebkitWebviewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C23E2A5272588220067150B /* TestWebkitWebviewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWebkitWebviewUITests.swift; sourceTree = "<group>"; };
 		4C23E2A7272588220067150B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F8E9FE5227ABCD3100F95A0A /* MluviiChat.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MluviiChat.framework; sourceTree = "<group>"; };
+		F8CECBC027B10F07007EAF17 /* MluviiChat.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MluviiChat.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8E9FE5327ABCD3100F95A0A /* MluviiChat.framework in Frameworks */,
+				F8CECBC127B10F08007EAF17 /* MluviiChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,7 +158,7 @@
 		4CF1D050272842E500C776E4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F8E9FE5227ABCD3100F95A0A /* MluviiChat.framework */,
+				F8CECBC027B10F07007EAF17 /* MluviiChat.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -173,7 +173,7 @@
 				4C23E27C2725881F0067150B /* Sources */,
 				4C23E27D2725881F0067150B /* Frameworks */,
 				4C23E27E2725881F0067150B /* Resources */,
-				F8E9FE5527ABCD3100F95A0A /* Embed Frameworks */,
+				F8CECBC327B10F08007EAF17 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

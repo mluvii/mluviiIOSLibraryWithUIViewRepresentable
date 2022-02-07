@@ -33,7 +33,7 @@ struct MluviiChatView: UIViewRepresentable {
     typealias Context = UIViewRepresentableContext<Self>
     typealias UIViewType = WKWebView
     
-    public var chat = MluviiChat()
+    public var chat = MluviiChatLibrary()
     @Binding private var isOpenChatClicked: Bool
     @Binding private var buttonColor: Color
 
