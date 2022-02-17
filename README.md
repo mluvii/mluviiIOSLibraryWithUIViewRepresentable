@@ -6,6 +6,7 @@ Mluvii provides a framework for integration with your application. The code prov
 - notification on change of widget status
 - open chat
 - close the chat and load a page with widget
+- provide custom in chat on link click handler
 
 #### Known issue: Due to the unavailability of getUserMedia in in-app WkWebView, video will not connect in Application
 
@@ -70,9 +71,17 @@ struct MluviiChatView: UIViewRepresentable {
      }
 
     public func makeUIView(context: Context) -> UIViewType {
-        let chat = MluviiChat()
+        let chat = MluviiChatLibrary()
         chat.setStatusUpdater(statusF: statusUpdate)
-        let chatView = chat.createUIView(url: "ptr.mluvii.com", companyGuid: "295b1064-cf5b-4a5d-9e05-e7a74f86ae5e", tenantId: "1", presetName: nil, language: nil, scope: nil)
+        let chatView = chat.createUIView(
+            url: "ptr.mluvii.com",
+            companyGuid: "295b1064-cf5b-4a5d-9e05-e7a74f86ae5e",
+            tenantId: "1",
+            presetName: nil,
+            language: nil,
+            scope: nil,
+            navigationActionCustomDelegate: self.navigationActionDelegate
+        )
         chat.setChatEnded {
             isOpenChatClicked = false
             chat.resetUrl()
@@ -86,6 +95,12 @@ struct MluviiChatView: UIViewRepresentable {
         }else{
             uiView.isHidden = true
         }
+    }
+
+    public func navigationActionDelegate(webView: WKWebView, navigationAction: WKNavigationAction) -> WKWebView? {
+      ...
+      custom navigation handler implementation
+      ...
     }
     
     private func statusUpdate(status: Int32) -> Void{
